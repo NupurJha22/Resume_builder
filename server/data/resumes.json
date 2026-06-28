@@ -1,0 +1,111 @@
+[
+  {
+    "resumeName": "My Resume",
+    "template": "modern",
+    "personalInfo": {
+      "fullName": "NUPUR JHA",
+      "email": "nupurjha2004@gmail.com",
+      "phone": "+91 9452664278",
+      "location": "lucknow ",
+      "website": "",
+      "linkedin": "ejfbcdsjbiud",
+      "github": "cbdsbcdugd8idv",
+      "summary": ""
+    },
+    "experience": [
+      {
+        "company": "ndudhfhf",
+        "role": "dhfhfyf",
+        "startDate": "2026-06",
+        "endDate": "2026-02",
+        "current": false,
+        "description": "vnnhvjghjg"
+      }
+    ],
+    "education": [
+      {
+        "institution": "dufrhfhfvhfufgu",
+        "degree": "xyfgfhvgug",
+        "field": "bxydhfhgfuthfgj",
+        "startDate": "2026-04",
+        "endDate": "2026-08",
+        "gpa": "7.4"
+      }
+    ],
+    "skills": [
+      "Node.js",
+      "Python",
+      "CSS",
+      "Git",
+      "MongoDB",
+      "JavaScript",
+      "SQL",
+      "HTML",
+      "english"
+    ],
+    "projects": [
+      {
+        "name": "judjffjg",
+        "description": "hhcbchdhdhchcv",
+        "url": "http://google.com",
+        "technologies": "jdudhvcbc"
+      },
+      {
+        "name": "",
+        "description": "",
+        "url": "",
+        "technologies": ""
+      }
+    ],
+    "certifications": [
+      {
+        "name": "hcjcjfvjg",
+        "issuer": "hchchchc",
+        "date": "2023-01",
+        "url": ""
+      },
+      {
+        "name": "",
+        "issuer": "",
+        "date": "",
+        "url": ""
+      }
+    ],
+    "_id": "dc685167-7ddd-4ee3-ae2c-b732415abf1a",
+    "createdAt": "2026-06-24T12:52:58.513Z",
+    "updatedAt": "2026-06-24T12:52:58.513Z"
+  },
+  {
+    "resumeName": "My Resume",
+    "template": "modern",
+    "personalInfo": {
+      "fullName": "",
+      "email": "",
+      "phone": "",
+      "location": "",
+      "website": "",
+      "linkedin": "",
+      "github": "",
+      "summary": ""
+    },
+    "experience": [],
+    "education": [],
+    "skills": [],
+    "projects": [],
+    "certifications": [],
+    "_id": "8979fa7d-273a-4a82-9254-6add8aeaacb8",
+    "createdAt": "2026-06-24T12:53:50.526Z",
+    "updatedAt": "2026-06-24T12:53:50.526Z"
+  },
+  {
+    "resumeName": "Test Resume",
+    "template": "modern",
+    "personalInfo": {
+      "fullName": "John Doe",
+      "email": "john@test.com"
+    },
+    "_id": "2cc43312-abe2-46ad-8216-5794442d0d3b",
+    "createdAt": "2026-06-27T07:54:38.760Z",
+    "updatedAt": "2026-06-27T07:54:38.760Z"
+  }
+]
