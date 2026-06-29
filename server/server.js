@@ -2,7 +2,6 @@ require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const net = require('net');
 
 const resumeRoutes = require('./routes/resumes');
 const storage = require('./storage');
@@ -11,7 +10,15 @@ const app = express();
 const PORT = process.env.PORT || 5001;
 
 // Middleware
-app.use(cors({ origin: 'http://localhost:5173', credentials: true }));
+app.use(
+  cors({
+    origin: [
+      "http://localhost:5173",
+      "https://resume-builder-one-omega-96.vercel.app",
+    ],
+    credentials: true,
+  })
+);
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
 
@@ -39,23 +46,6 @@ app.use((err, req, res, next) => {
   res.status(500).json({ success: false, message: 'Internal server error' });
 });
 
-function canReachMongo(host, port, timeout = 2000) {
-  return new Promise((resolve) => {
-    const socket = net.createConnection({ host, port, family: 4 }, () => {
-      socket.destroy();
-      resolve(true);
-    });
-    socket.setTimeout(timeout);
-    socket.on('timeout', () => {
-      socket.destroy();
-      resolve(false);
-    });
-    socket.on('error', () => {
-      socket.destroy();
-      resolve(false);
-    });
-  });
-}
 
 let httpServer = null;
 
@@ -92,38 +82,27 @@ process.once('SIGUSR2', () => {
 });
 
 async function connectDatabase() {
-  const uri = (process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/resume_builder').replace(
-    'localhost',
-    '127.0.0.1'
-  );
+  const uri = process.env.MONGODB_URI;
 
-  const skipMongo = process.env.USE_MONGODB === 'false';
-  const reachable = !skipMongo && (await canReachMongo('127.0.0.1', 27017));
-
-  if (reachable) {
-    try {
-      await mongoose.connect(uri, {
-        serverSelectionTimeoutMS: 3000,
-        connectTimeoutMS: 3000,
-        family: 4,
-      });
-      storage.setFileStoreMode(false);
-      console.log('✅ Connected to MongoDB');
-    } catch (err) {
-      console.warn('⚠️  MongoDB unreachable — using local file storage');
-      console.warn(`   (${err.message})`);
-      storage.setFileStoreMode(true);
-    }
-  } else {
+  if (!uri) {
+    console.log("📁 No MONGODB_URI found. Using local file storage.");
     storage.setFileStoreMode(true);
-    if (skipMongo) {
-      console.log('📁 Using local file storage (USE_MONGODB=false)');
-    } else {
-      console.log('📁 MongoDB not running — using local file storage');
-    }
+    return startServer();
+  }
+
+  try {
+    await mongoose.connect(uri);
+
+    console.log("✅ Connected to MongoDB Atlas");
+
+    storage.setFileStoreMode(false);
+  } catch (err) {
+    console.error("❌ MongoDB connection failed:");
+    console.error(err.message);
+
+    storage.setFileStoreMode(true);
   }
 
   startServer();
 }
-
 connectDatabase();
