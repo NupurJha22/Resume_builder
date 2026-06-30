@@ -1,5 +1,5 @@
 // API helper — all calls to the Express backend
-const BASE = '/api';
+const BASE = 'https://resume-builder-320o.onrender.com/api';
 
 async function request(method, path, body) {
   const opts = {
